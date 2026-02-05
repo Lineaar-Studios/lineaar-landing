@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -58,6 +59,14 @@ function CloseIcon({ className }: { className?: string }) {
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -94,7 +103,12 @@ export function Header() {
             <Link
               key={href}
               href={href}
-              className="text-sm font-medium text-brand-ink transition-colors hover:text-brand-primary"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-brand-primary",
+                isActive(href)
+                  ? "text-brand-primary"
+                  : "text-brand-ink"
+              )}
             >
               {label}
             </Link>
@@ -158,7 +172,12 @@ export function Header() {
                 key={href}
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className="rounded-[8px] px-4 py-3 text-base font-medium text-hero-text transition-colors hover:bg-white/60 hover:text-brand-primary"
+                className={cn(
+                  "rounded-[8px] px-4 py-3 text-base font-medium transition-colors hover:bg-white/60 hover:text-brand-primary",
+                  isActive(href)
+                    ? "bg-white/40 text-brand-primary"
+                    : "text-hero-text"
+                )}
               >
                 {label}
               </Link>

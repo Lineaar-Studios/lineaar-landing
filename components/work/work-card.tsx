@@ -8,8 +8,9 @@ type WorkCardProps = {
 
 const categoryBadgeStyles: Record<string, string> = {
   Web: "bg-blue-100 text-brand-primary",
-  Product: "bg-violet-100 text-violet-700",
-  Brand: "bg-hero-bg text-hero-text",
+  Product: "bg-green-100 text-green-700",
+  Brand: "bg-purple-100 text-purple-700",
+  Business: "bg-amber-100 text-amber-800",
 };
 
 function getCategoryBadgeClass(category: string): string {
@@ -22,7 +23,7 @@ function getCategoryBadgeClass(category: string): string {
 export function WorkCard({ work }: WorkCardProps) {
   return (
     <Link
-      href={`/works/${work.id}`}
+      href={`/work/${work.id}`}
       className="group flex cursor-pointer flex-col"
     >
       <article className="flex flex-col">
@@ -36,13 +37,13 @@ export function WorkCard({ work }: WorkCardProps) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
           <span
-            className={`absolute bottom-3 right-3 rounded-[6px] px-3 py-1.5 text-sm font-medium ${getCategoryBadgeClass("web")}`}
+            className={`absolute bottom-3 right-3 rounded-[6px] px-3 py-1.5 text-sm font-medium ${getCategoryBadgeClass(work.category)}`}
             aria-hidden
           >
             {work.category}
           </span>
         </div>
-        <h3 className="mt-4 font-title text-lg font-semibold text-hero-text md:text-xl">
+        <h3 className="mt-4 font-title text-lg font-semibold text-hero-text md:text-xl group-hover:text-brand-primary">
           {work.title}
         </h3>
         <p className="mt-1 text-sm text-brand-ink-light">

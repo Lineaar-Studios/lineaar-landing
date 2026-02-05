@@ -1,3 +1,5 @@
+"use client";
+
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,6 +20,8 @@ const socialLinks = [
 ] as const;
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer role="contentinfo">
       <div className="mx-auto max-w-[1300px] rounded-t-3xl bg-hero-bg text-hero-text">
@@ -38,8 +42,9 @@ export function Footer() {
                 Creating digital experiences. Lineaar is built on the principle
                 that structure creates trust.
               </p>
-              <p className="mt-2 text-xs text-brand-ink-light/90">
-                © All rights reserved by Lineaar.
+              {/* Copyright - under brand section on larger screens */}
+              <p className="mt-10 hidden text-xs text-brand-ink-light/90 md:block md:text-left lg:mt-10">
+                © {currentYear} All rights reserved.
               </p>
             </div>
 
@@ -86,6 +91,12 @@ export function Footer() {
                 ))}
               </div>
             </div>
+          </div>
+          {/* Copyright - appears at bottom on mobile screens only */}
+          <div className="mt-12 flex justify-center md:hidden">
+            <p className="text-xs text-brand-ink-light/90">
+              © {currentYear} All rights reserved.
+            </p>
           </div>
         </div>
       </div>

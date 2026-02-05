@@ -9,7 +9,7 @@ type NewsCardProps = {
 export function NewsCard({ item }: NewsCardProps) {
   return (
     <Link
-      href={`/news/${item.slug}`}
+      href={`/blog/${item.slug}`}
       className="group flex cursor-pointer flex-col"
     >
       {/* Label + top border */}

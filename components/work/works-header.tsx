@@ -35,7 +35,7 @@ export function WorksHeader() {
         </h2>
       </div>
       <Button asChild size="default">
-        <Link href="/work">More Work</Link>
+        <Link href="/work#work-grid">More Work</Link>
       </Button>
     </motion.div>
   );

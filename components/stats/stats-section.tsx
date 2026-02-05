@@ -12,7 +12,11 @@ const CTA_IMAGE =
 
 const stats = [
   { value: "5+", label: "Years of service", variant: "filledDark" as const },
-  { value: "20+", label: "Successful projects", variant: "filledLight" as const },
+  {
+    value: "20+",
+    label: "Successful projects",
+    variant: "filledLight" as const,
+  },
   {
     value: "97%",
     label: "Clients satisfaction rate",
@@ -38,10 +42,7 @@ export function StatsSection() {
   const inView = useInView(ref, { once: true, margin: "-80px 0px" });
 
   return (
-    <section
-      className="py-16 md:py-24"
-      aria-labelledby="stats-heading"
-    >
+    <section className="py-16 md:py-24" aria-labelledby="stats-heading">
       <div className="mx-auto max-w-[1300px] px-3">
         <motion.h2
           id="stats-heading"
@@ -94,7 +95,13 @@ export function StatsSection() {
                 <Link href="/work">More Work</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href="/contact">Schedule a meeting</Link>
+                <Link
+                  href="https://calendly.com/lineaarstudios/30min"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Schedule a meeting
+                </Link>
               </Button>
             </div>
           </div>

@@ -38,7 +38,13 @@ export function HeroContent() {
         className="mt-8"
       >
         <Button asChild variant="outline" size="lg">
-          <Link href="/contact">Schedule a meeting</Link>
+          <Link
+            href="https://calendly.com/lineaarstudios/30min"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Schedule a meeting
+          </Link>
         </Button>
       </motion.div>
     </div>
