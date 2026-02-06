@@ -55,7 +55,7 @@ export function StatsSection() {
           Our success story in numbers
         </motion.h2>
         <ul
-          className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3"
+          className="mx-auto mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3"
           role="list"
         >
           {stats.map((stat, index) => (
