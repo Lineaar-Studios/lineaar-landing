@@ -2,10 +2,12 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
 export function ContactForm() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px 0px" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,10 +16,42 @@ export function ContactForm() {
     comment: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+    setStatus("loading");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "47cbd678-fe39-4395-9da4-3d0966fd701f",
+          ...formData,
+          from_name: "Lineaar Studios Contact Form",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          phone: "",
+          comment: "",
+        });
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setStatus("error");
+    }
   };
 
   const handleChange = (
@@ -46,7 +80,8 @@ export function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full border-b border-brand-ink/20 bg-transparent pb-2 text-base text-hero-text placeholder:text-brand-ink-light focus:border-brand-primary focus:outline-none"
+          disabled={status === "loading"}
+          className="w-full border-b border-brand-ink/20 bg-transparent pb-2 text-base text-hero-text placeholder:text-brand-ink-light focus:border-brand-primary focus:outline-none disabled:opacity-50"
         />
       </div>
 
@@ -58,7 +93,8 @@ export function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full border-b border-brand-ink/20 bg-transparent pb-2 text-base text-hero-text placeholder:text-brand-ink-light focus:border-brand-primary focus:outline-none"
+          disabled={status === "loading"}
+          className="w-full border-b border-brand-ink/20 bg-transparent pb-2 text-base text-hero-text placeholder:text-brand-ink-light focus:border-brand-primary focus:outline-none disabled:opacity-50"
         />
       </div>
 
@@ -70,7 +106,8 @@ export function ContactForm() {
           value={formData.subject}
           onChange={handleChange}
           required
-          className="w-full border-b border-brand-ink/20 bg-transparent pb-2 text-base text-hero-text placeholder:text-brand-ink-light focus:border-brand-primary focus:outline-none"
+          disabled={status === "loading"}
+          className="w-full border-b border-brand-ink/20 bg-transparent pb-2 text-base text-hero-text placeholder:text-brand-ink-light focus:border-brand-primary focus:outline-none disabled:opacity-50"
         />
       </div>
 
@@ -81,7 +118,8 @@ export function ContactForm() {
           placeholder="Phone no"
           value={formData.phone}
           onChange={handleChange}
-          className="w-full border-b border-brand-ink/20 bg-transparent pb-2 text-base text-hero-text placeholder:text-brand-ink-light focus:border-brand-primary focus:outline-none"
+          disabled={status === "loading"}
+          className="w-full border-b border-brand-ink/20 bg-transparent pb-2 text-base text-hero-text placeholder:text-brand-ink-light focus:border-brand-primary focus:outline-none disabled:opacity-50"
         />
       </div>
 
@@ -91,21 +129,54 @@ export function ContactForm() {
           placeholder="Comment"
           value={formData.comment}
           onChange={handleChange}
+          disabled={status === "loading"}
           rows={6}
           required
-          className="w-full resize-none border-b border-brand-ink/20 bg-transparent pb-2 text-base text-hero-text placeholder:text-brand-ink-light focus:border-brand-primary focus:outline-none"
+          className="w-full resize-none border-b border-brand-ink/20 bg-transparent pb-2 text-base text-hero-text placeholder:text-brand-ink-light focus:border-brand-primary focus:outline-none disabled:opacity-50"
         />
         <span className="absolute bottom-2 right-0 text-xs text-brand-ink-light">
           {formData.comment.length}
         </span>
       </div>
 
-      <button
-        type="submit"
-        className="w-full rounded-lg bg-hero-bg px-6 py-3 text-base font-medium text-hero-text transition-colors hover:bg-hero-bg/90 md:w-auto"
-      >
-        Submit
-      </button>
+      <div className="flex flex-col gap-4">
+        <button
+          type="submit"
+          disabled={status === "loading"}
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-hero-bg px-6 py-3 text-base font-medium text-hero-text transition-colors hover:bg-hero-bg/90 disabled:cursor-not-allowed disabled:opacity-70 md:w-auto"
+        >
+          {status === "loading" ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Sending...
+            </>
+          ) : (
+            "Submit"
+          )}
+        </button>
+
+        {status === "success" && (
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-center gap-2 text-sm text-green-500"
+          >
+            <CheckCircle2 className="h-4 w-4" />
+            Message sent successfully!
+          </motion.div>
+        )}
+
+        {status === "error" && (
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-center gap-2 text-sm text-red-500"
+          >
+            <AlertCircle className="h-4 w-4" />
+            Something went wrong. Please try again.
+          </motion.div>
+        )}
+      </div>
     </motion.form>
   );
 }
