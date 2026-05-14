@@ -175,7 +175,7 @@ export default function AboutPage() {
             <h2 className="text-center font-title text-2xl font-semibold text-hero-text md:text-3xl">
               Our team
             </h2>
-            <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
               {team.map((member) => (
                 <article
                   key={member.name}
@@ -187,7 +187,7 @@ export default function AboutPage() {
                       alt={member.name}
                       width={400}
                       height={400}
-                      className="h-64 w-full object-cover"
+                      className="h-80 w-full object-cover object-top"
                       sizes="(max-width: 768px) 100vw, 400px"
                     />
                   </div>
