@@ -16,7 +16,7 @@ export const testimonials: Testimonial[] = [
     company: "SustainEnvir Solutions",
     quote:
       "Lineaar brought clarity to our brand and digital presence. Their structured approach helped us communicate our mission with confidence to stakeholders and clients alike.",
-    imageUrl: "/Apollinaire.png",
+    imageUrl: "/Apollinaire.webp",
     imageAlt: "Dr. Apollinaire Munyaneza",
   },
   {

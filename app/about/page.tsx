@@ -33,22 +33,19 @@ const values = [
 
 const team = [
   {
-    name: "Skye Peters",
-    role: "Creative Director",
-    imageUrl:
-      "https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?w=400&h=400&fit=crop",
+    name: "Aston Guevara",
+    role: "Brand Designer",
+    imageUrl: "/Aston-Guevara.webp",
   },
   {
-    name: "Naima Haby",
-    role: "Brand Strategist",
-    imageUrl:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
+    name: "Naomi June",
+    role: "Project Lead",
+    imageUrl: "/Naomi-June.webp",
   },
   {
-    name: "Winston Hansen",
-    role: "Design Lead",
-    imageUrl:
-      "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=400&h=400&fit=crop",
+    name: "Jabo Jean Marie",
+    role: "Web Developer",
+    imageUrl: "/Jabo-Jean-Marie.webp",
   },
 ];
 
