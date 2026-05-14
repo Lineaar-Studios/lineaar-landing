@@ -22,7 +22,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
             alt={testimonial.imageAlt}
             width={80}
             height={80}
-            className="size-full object-cover"
+            className="size-full object-cover object-top"
             sizes="80px"
           />
         </div>
