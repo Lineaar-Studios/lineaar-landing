@@ -11,14 +11,13 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     id: "1",
-    name: "Jenkins Aigbugwili",
-    title: "CEO, Founder",
-    company: "Safe Choice Support Services",
+    name: "Dr. Apollinaire Munyaneza",
+    title: "CEO & Founder",
+    company: "SustainEnvir Solutions",
     quote:
       "Lineaar brought clarity to our brand and digital presence. Their structured approach helped us communicate our mission with confidence to stakeholders and clients alike.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop",
-    imageAlt: "Jenkins Aigbugwili",
+    imageUrl: "/Apollinaire.png",
+    imageAlt: "Dr. Apollinaire Munyaneza",
   },
   {
     id: "2",
