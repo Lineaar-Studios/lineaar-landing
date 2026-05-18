@@ -137,12 +137,12 @@ export default function AboutPage() {
         {/* Story section */}
         <section className="py-8 md:py-12">
           <div className="mx-auto max-w-[1300px] px-3">
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.1fr_1fr] md:items-center">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center">
               <div>
                 <h2 className="font-title text-2xl font-semibold text-hero-text md:text-3xl">
                   Our journey, mission, and commitment to excellence
                 </h2>
-                <p className="mt-4 text-sm leading-relaxed text-brand-ink md:text-base">
+                <p className="mt-5 text-sm leading-relaxed text-brand-ink md:text-base">
                   Lineaar was founded on a simple principle: structure creates
                   trust. We partner with institutions, teams, and founders who
                   operate in complex environments and need brands that feel calm,
@@ -157,8 +157,8 @@ export default function AboutPage() {
               </div>
               <div className="overflow-hidden rounded-2xl bg-hero-bg">
                 <Image
-                  src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=900&h=900&fit=crop"
-                  alt="Designer working in a bright studio"
+                  src="/Team-photo.webp"
+                  alt="Lineaar team photo"
                   width={900}
                   height={900}
                   className="h-full w-full object-cover"
